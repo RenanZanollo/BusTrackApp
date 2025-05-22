@@ -1,31 +1,19 @@
 // screens/LoginScreen.js
 import { useNavigation } from '@react-navigation/native';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import {
-  Alert, Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View
+    Image,
+    Pressable,
+    StyleSheet,
+    Text,
+    TextInput,
+    View,
 } from 'react-native';
 
 export default function LoginScreen() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-
-  const handleLogin = async () => {
-    const auth = getAuth();
-    try {
-      await signInWithEmailAndPassword(auth, email, senha);
-      Alert.alert('Sucesso', 'Login realizado com sucesso!');
-      navigation.navigate('MainScreen');
-    } catch (error) {
-      Alert.alert('Erro ao fazer login', error.message);
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -66,14 +54,15 @@ export default function LoginScreen() {
         </Pressable>
       </View>
 
-      <Pressable style={styles.buttonPrimary} onPress={handleLogin}>
+      <Pressable style={styles.buttonPrimary}>
         <Text style={styles.buttonPrimaryText}>Entrar</Text>
       </Pressable>
 
       <Pressable style={styles.buttonOutline}>
         <Image
           source={{
-            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png',
+            uri:
+              'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png',
           }}
           style={styles.googleIcon}
         />
